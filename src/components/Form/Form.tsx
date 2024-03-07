@@ -1,58 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { Button, TextField } from "@mui/material";
-import { addTask } from "../../state/todoSlice";
-import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useState } from 'react'
+import { Button, TextField } from '@mui/material'
+import { addTask } from '../../state/todoSlice'
+import { useDispatch } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
 
-interface Props {}
+export const Form: React.FC = () => {
+  const [newRecord, setNewRecord] = useState('')
+  const [error, setError] = useState('')
 
-export const Form: React.FC<Props> = () => {
-  const [newRecord, setNewRecord] = useState("");
-  const [error, setError] = useState("");
+  const dispatch = useDispatch()
 
-  const dispatch = useDispatch();
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = (e: any): void => {
+    e.preventDefault()
     if (newRecord.length === 0) {
-      return setError("Length has to be more than 0");
+      return setError('Length has to be more than 0')
     }
     if (newRecord.length >= 40) {
-      return setError("Length has to be less than 40");
+      return setError('Length has to be less than 40')
     }
 
     if (newRecord.length < 30) {
-      if (error) setError("");
+      if (error) setError('')
 
       dispatch(
         addTask({
           id: uuidv4(),
           status: false,
           title: newRecord,
-        })
-      );
-      setNewRecord("");
+        }),
+      )
+      setNewRecord('')
     }
-  };
+  }
 
-  const handleChange = (e: any) => {
-    setNewRecord(e.target.value);
-  };
+  const handleChange = (e: any): void => {
+    setNewRecord(e.target.value)
+  }
 
   useEffect(() => {
     if (newRecord.length > 0 && newRecord.length < 40) {
-      setError("");
+      setError('')
     }
-  }, [newRecord]);
+  }, [newRecord])
 
   return (
     <form
       style={{
-        display: "flex",
-        flexDirection: "column",
-        rowGap: "10px",
-        maxWidth: "300px",
-        width: "100%",
+        display: 'flex',
+        flexDirection: 'column',
+        rowGap: '10px',
+        maxWidth: '300px',
+        width: '100%',
       }}
       onSubmit={handleSubmit}
     >
@@ -67,5 +65,5 @@ export const Form: React.FC<Props> = () => {
         Add Record
       </Button>
     </form>
-  );
-};
+  )
+}

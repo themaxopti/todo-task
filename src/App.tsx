@@ -1,11 +1,12 @@
-import { ToDoComponent } from './components/Todo';
+import React from 'react'
+import { ToDoComponent } from './components/Todo'
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-        <ToDoComponent />
+      <ToDoComponent />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

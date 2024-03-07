@@ -1,24 +1,31 @@
-import { Button } from "@mui/material";
-import { useAppDispatch } from "../../hooks/hooks";
-import { FilterMode, changeMode } from "../../state/todoSlice";
+import React from 'react'
+import { Button } from '@mui/material'
+import { useAppDispatch } from '../../hooks/hooks'
+import { FilterMode, changeMode } from '../../state/todoSlice'
 
-export const FilteredButtons = () => {
-  const dispatch = useAppDispatch();
-  const filterRecords = (title: FilterMode) => {
-    dispatch(changeMode(title));
-  };
+export const FilteredButtons: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const filterRecords = (title: FilterMode): void => {
+    dispatch(changeMode(title))
+  }
 
   return (
     <>
-      <Button variant="contained" onClick={() => filterRecords("ALL")}>
+      <Button variant="contained" onClick={(): void => filterRecords('ALL')}>
         All
       </Button>
-      <Button variant="contained" onClick={() => filterRecords("COMPLETED")}>
+      <Button
+        variant="contained"
+        onClick={(): void => filterRecords('COMPLETED')}
+      >
         Completed
       </Button>
-      <Button variant="contained" onClick={() => filterRecords("CURRENT")}>
+      <Button
+        variant="contained"
+        onClick={(): void => filterRecords('CURRENT')}
+      >
         Current
       </Button>
     </>
-  );
-};
+  )
+}
